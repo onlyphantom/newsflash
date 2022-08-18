@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News Portal</title>
+    <title>News Portal 📰</title>
     <!-- src: source (brings in chart.js), 
         copied from https://cdnjs.com/libraries/Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -19,14 +19,15 @@
 
 <body>
     <div class="container">
-
-
         <!-- h1 to h6: heading -->
         <h1 class="display-2">
-            News Highlight
+            News Highlight 📰
         </h1>
+        <div id="currencyToday" class="my-4"></div>
+        <hr>
+
         <h2 style="color:#045498">Bank Indonesia Interest Rate Analysis</h2>
-        <h3>WNI reacts to interest rate hike!</h3>
+        <h3>Indonesians reacts to interest rate hike!</h3>
         <h6>Sumber:
             <a href="https://www.bi.go.id/en/publikasi/ruang-media/news-release/Pages/sp_2422022.aspx" target="_blank">
                 Detik.com
@@ -34,12 +35,13 @@
         </h6>
         <!-- (ignore this) hr: horizontal line -->
         <hr>
+
         <!-- img: image, src: source, alt:alternate -->
         <img src="https://www.bi.go.id/id/publikasi/ruang-media/news-release/PublishingImages/Pages/sp_2421922/_w/sp_2421922_2_jpg.jpg"
             class="img-thumbnail" alt="bank indonesia ceremony" />
 
         <!-- ul: unordered list, ol: ordered list, li:list item -->
-        <ul class="list-group mt-4">
+        <ul class="list-group my-4">
             <li class="list-group-item">Indonesia interest rate hike for second year in a row</li>
             <li class="list-group-item">CPI and consumer index being monitored closely, said Bank Indonesia spokesmen
             </li>
@@ -47,7 +49,7 @@
             <li class="list-group-item">Indonesia in an effort to control raising inflation</li>
         </ul>
         <!-- p: paragraph -->
-        <p class="lead">
+        <p class="lead mt-2">
             Lorem ipsum dolor sit amet, according to a
             <a href="https://www.bi.go.id/en/publikasi/ruang-media/news-release/Pages/sp_2422022.aspx">official press
                 release</a>, consectetur adipisicing elit. Ab laboriosam atque quo veritatis repellendus
@@ -101,6 +103,24 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
+    <script>
+        const todayDateString = new Date().toLocaleDateString();
+        // use fetchAPI to retrieve IDR/USD today
+        fetch('https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json')
+            .then(response => response.json())
+            .then(data => {
+                const currencyToday = document.getElementById('currencyToday');
+                currencyToday.innerHTML = `
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">USD to IDR Exchange Rate for (${todayDateString})</h5>
+                            <p class="card-text">1 USD = ${data.usd.idr} IDR</p>
+                        </div>
+                    </div>
+                `;
+            });
+    </script>
+
 
 </body>
 
