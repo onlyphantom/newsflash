@@ -1,0 +1,14 @@
+h1 {
+    color: dodgerblue;
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+p {
+    color: lightslategray;
+}
+
+img {
+    border-radius: 50px;
+    border: 5px solid dodgerblue;
+}
